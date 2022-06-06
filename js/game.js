@@ -6,9 +6,7 @@
 // Created on: Sep 2020
 // This is the Phaser3 game configuration file
 
-/**
- * Start Phaser Game.
- */
+/** Game scene.*/
 const config = {
   type: Phaser.AUTO,
   width: 1920,
