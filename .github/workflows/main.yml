@@ -1,10 +1,10 @@
 ###############################################
-# Run Mr Coxall's Super Linter against code base #
+# Run GitHub's Super Linter against code base #
 ###############################################
 
 ---
 name: Mr Coxall's Super Linter
-on: push
+on: [push, pull_request]
 
 jobs:
   run-linters:
@@ -14,13 +14,19 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@master
-          
+
+      - name: Prettify code
+        uses: creyD/prettier_action@master
+        with:
+          # run Prettier and see if it passes
+          dry: True
+          #prettier_options: --write **/*.{js,md}
+          github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+
       - name: Run GitHub Super Linter
         uses: github/super-linter@main
         env:
           VALIDATE_ALL_CODEBASE: true
-          VALIDATE_JAVASCRIPT_STANDARD: false # standard js linter
-          VALIDATE_GITLEAKS: false # for secrets detection
-          VALIDATE_JSCPD: false # for copy and paste detection
+          VALIDATE_JAVASCRIPT_STANDARD: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
