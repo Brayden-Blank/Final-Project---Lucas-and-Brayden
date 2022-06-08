@@ -1,5 +1,6 @@
 /* global Phaser */
-// Created by: Lucas 
+
+// Created by: Lucas
 // Created on: April 2022
 // This is the Phaser3 game configuration file
 
