@@ -2,7 +2,7 @@
 
 // Copyright (c) 2022 Brayden Blank All rights reserved
 //
-// Created by: Brayden Blank
+// Created by: Brayden 
 // Created on: June 2022
 // This is the Splash Scene
 
