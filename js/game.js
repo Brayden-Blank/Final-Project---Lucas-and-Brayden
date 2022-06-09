@@ -1,8 +1,16 @@
 /* global Phaser */
 
-// Created by: Lucas
-// Created on: April 2022
-// This is the Phaser3 game configuration file
+// Created by: Lucas 7 Brayden
+// Created on: June 2022
+// This is the Han solo Asteroid game configuration file
+
+// scene import statements
+import SplashScene from "./spashScene.js"
+import TitleScene from "./titleScene.js"
+
+// create the new scenes
+const splashScene = new SplashScene()
+const titleScene = new TitleScene()
 
 /**
  * Start Phaser Game.
@@ -27,4 +35,12 @@ const config = {
 }
 
 const game = new Phaser.Game(config)
-console.log(game)
+// console.log(game)
+
+// load scenes
+// Note: remember any "key" key is global and CAN NOT be reused!
+game.scene.add("splashScene", splashScene)
+game.scene.add("titleScene", titleScene)
+
+// the start scene
+game.scene.start("splashScene")
