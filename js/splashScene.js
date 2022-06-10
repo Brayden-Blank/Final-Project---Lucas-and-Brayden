@@ -2,7 +2,7 @@
 
 // Copyright (c) 2022 Brayden Blank All rights reserved
 //
-// Created by: Brayden Blank
+// Created by: Brayden
 // Created on: June 2022
 // This is the Splash Scene
 
@@ -56,7 +56,9 @@ class SplashScene extends Phaser.Scene {
    * @param {number} delta - The delta time in ms since the last frame
    */
   update(time, delta) {
-    //pass
+    if (time > 3000) {
+      this.scene.switch("titleScene")
+    }
   }
 }
 
