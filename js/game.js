@@ -5,7 +5,7 @@
 // This is the Han solo Asteroid game configuration file
 
 // scene import statements
-import SplashScene from "./spashScene.js"
+import SplashScene from "./splashScene.js"
 import TitleScene from "./titleScene.js"
 
 // create the new scenes
