@@ -65,6 +65,9 @@ class MenuScene extends Phaser.Scene {
     //pass
   }
 
+  /** 
+  * Load into the game!
+  */
   clickButton() {
     // this.scene.start("gameScene")
   }
