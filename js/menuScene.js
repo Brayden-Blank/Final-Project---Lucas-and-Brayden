@@ -64,7 +64,7 @@ class MenuScene extends Phaser.Scene {
   update(time, delta) {
     //pass
   }
-  
+
   clickButton() {
     // pass
   }
