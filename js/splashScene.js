@@ -10,11 +10,11 @@
  * This class is the Splash Scene.
  */
 class SplashScene extends Phaser.Scene {
-  /** 
-   * This method is the construtor. 
+  /**
+   * This method is the construtor.
    */
   constructor() {
-    super({ key: "splashScene"})
+    super({ key: "splashScene" })
 
     this.splashSceneBackgroundImage = null
   }
@@ -29,7 +29,7 @@ class SplashScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor("#ffffff")
   }
 
-  /** 
+  /**
    * Can be defined on your own Scenes.
    * Use it to load assets
    */
@@ -38,7 +38,7 @@ class SplashScene extends Phaser.Scene {
     this.load.image("splashSceneBackground", "./assets/splashSceneImage.png")
   }
 
-  /** 
+  /**
    * Can be defined on your own Scenes
    * Use it to create your game objects.
    * @param {object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start().

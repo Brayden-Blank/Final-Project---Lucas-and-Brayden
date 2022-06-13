@@ -6,11 +6,11 @@
 // Created on: April 2022
 //This is a menu scene
 
-/** 
+/**
  * This class is the Menu Scene
  */
 class MenuScene extends Phaser.Scene {
-  /** 
+  /**
    * This method is the construtor
    */
   constructor() {
@@ -20,8 +20,8 @@ class MenuScene extends Phaser.Scene {
     this.startButton = null
   }
 
-  /** 
-   * Can be defined on your own Scenes. 
+  /**
+   * Can be defined on your own Scenes.
    * This method is called by the Scene Manager when the scene starts,
    * before preload() and create().
    * @param {object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start().
@@ -30,7 +30,7 @@ class MenuScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor("ffffff")
   }
 
-  /** 
+  /**
    * Can be defined on your own Scenes.
    * Use it to load assets.
    */
