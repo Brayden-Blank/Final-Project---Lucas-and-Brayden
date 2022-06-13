@@ -7,12 +7,12 @@
 //This is a menu scene
 
 /** 
-  * This class is the Menu Scene
-  */
+ * This class is the Menu Scene
+ */
 class MenuScene extends Phaser.Scene {
   /** 
-    * This method is the construtor
-    */
+   * This method is the construtor
+   */
   constructor() {
     super({ key: "menuScene" })
 
@@ -31,9 +31,9 @@ class MenuScene extends Phaser.Scene {
   }
 
   /** 
-    * Can be defined on your own Scenes.
-    * Use it to load assets.
-    */
+   * Can be defined on your own Scenes.
+   * Use it to load assets.
+   */
   preload() {
     console.log("Menu Scene")
     this.load.image("menuSceneBackground", "assets/menuScene.png")
@@ -41,10 +41,10 @@ class MenuScene extends Phaser.Scene {
   }
 
   /**
-    * Can be defined on your own Scenes.
-    * Use it to create your game objects.
-    * @param {object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start().
-    */
+   * Can be defined on your own Scenes.
+   * Use it to create your game objects.
+   * @param {object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start().
+   */
   create(data) {
     this.menuSceneBackgroundImage = this.add.sprite(0, 0, "menuSceneBackground")
     this.menuSceneBackgroundImage.x = 1920 / 2
@@ -56,11 +56,11 @@ class MenuScene extends Phaser.Scene {
   }
 
   /**
-    * Should be overriden by your own Scenes.
-    * This method is called once per game step while the scene is running.
-    * @param {number} time - The current time.
-    * @param {number} delta - The delta time in ms since the last frame.
-    */
+   * Should be overriden by your own Scenes.
+   * This method is called once per game step while the scene is running.
+   * @param {number} time - The current time.
+   * @param {number} delta - The delta time in ms since the last frame.
+   */
   update(time, delta) {
     //pass
   }
