@@ -4,19 +4,20 @@
 //
 // Created by Brayden Blank
 // Created on: April 2022
-//This is a title scene
+//This is a menu scene
 
 /**
- * This class is the Title Scene
+ * This class is the Menu Scene
  */
-class TitleScene extends Phaser.Scene {
+class MenuScene extends Phaser.Scene {
   /**
    * This method is the construtor
    */
   constructor() {
-    super({ key: "titleScene" })
+    super({ key: "menuScene" })
 
-    this.titleSceneBackgroundImage = null
+    this.menuSceneBackgroundImage = null
+    this.startButton = null
   }
 
   /**
@@ -34,8 +35,9 @@ class TitleScene extends Phaser.Scene {
    * Use it to load assets.
    */
   preload() {
-    console.log("Title Scene")
-    this.load.image("titleSceneBackground", "assets/titleScene.png")
+    console.log("Menu Scene")
+    this.load.image("menuSceneBackground", "assets/menuScene.png")
+    this.load.image("startButton", "assets/start.png")
   }
 
   /**
@@ -44,11 +46,13 @@ class TitleScene extends Phaser.Scene {
    * @param {object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start().
    */
   create(data) {
-    this.titleSceneBackgroundImage = this.add
-      .sprite(0, 0, "titleSceneBackground")
-      .setScale(2.75)
-    this.titleSceneBackgroundImage.x = 1920 / 2
-    this.titleSceneBackgroundImage.y = 1080 / 2
+    this.menuSceneBackgroundImage = this.add.sprite(0, 0, "menuSceneBackground")
+    this.menuSceneBackgroundImage.x = 1920 / 2
+    this.menuSceneBackgroundImage.y = 1080 / 2
+
+    this.startButton = this.add.sprite(1920 / 2, 1080 / 2 + 100, "startButton")
+    this.startButton.setInteractive({ useHandCursor: true })
+    this.startButton.on("pointerdown", () => this.clickButton())
   }
 
   /**
@@ -58,10 +62,15 @@ class TitleScene extends Phaser.Scene {
    * @param {number} delta - The delta time in ms since the last frame.
    */
   update(time, delta) {
-    if (time > 6000) {
-      this.scene.switch("menuScene")
-    }
+    //pass
+  }
+
+  /**
+   * Load into the game!
+   */
+  clickButton() {
+    // this.scene.start("gameScene")
   }
 }
 
-export default TitleScene
+export default MenuScene

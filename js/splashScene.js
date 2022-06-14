@@ -2,8 +2,8 @@
 
 // Copyright (c) 2022 Brayden Blank All rights reserved
 //
-// Created by: Brayden
-// Created on: June 2022
+// Created by: Brayden Blank
+// Created on: June 13 2022
 // This is the Splash Scene
 
 /**
@@ -22,11 +22,11 @@ class SplashScene extends Phaser.Scene {
   /**
    * Can be defined on your own Scenes.
    * This method is called by the Scene Manager when the scene starts,
-   * before preload () and create().
-   * @param {object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start()
+   * before preload() and create().
+   * @param {object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start().
    */
   init(data) {
-    this.cameras.main.setBackgroundColor("ffffff")
+    this.cameras.main.setBackgroundColor("#ffffff")
   }
 
   /**
@@ -35,16 +35,20 @@ class SplashScene extends Phaser.Scene {
    */
   preload() {
     console.log("Splash Scene")
-    this.load.image("splashSceneImage", "./assets/splashSceneImage.png")
+    this.load.image("splashSceneBackground", "./assets/splashSceneImage.png")
   }
 
   /**
-   * Can be defined on your own Scenes.
-   * Use it to create your game objects
-   * @param  {object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start()
+   * Can be defined on your own Scenes
+   * Use it to create your game objects.
+   * @param {object} data - Any data passed via ScenePlugin.add() or ScenePlugin.start().
    */
   create(data) {
-    this.splashSceneBackgroundImage = this.add.sprite(0, 0, "splashSceneImage")
+    this.splashSceneBackgroundImage = this.add.sprite(
+      0,
+      0,
+      "splashSceneBackground"
+    )
     this.splashSceneBackgroundImage.x = 1920 / 2
     this.splashSceneBackgroundImage.y = 1080 / 2
   }
@@ -53,7 +57,7 @@ class SplashScene extends Phaser.Scene {
    * Should be overridden by your own Scenes.
    * This method is called once per game step while the scene is running.
    * @param {number} time - The current time.
-   * @param {number} delta - The delta time in ms since the last frame
+   * @param {number} delta - The delta time in ms since the last frame.
    */
   update(time, delta) {
     if (time > 3000) {
