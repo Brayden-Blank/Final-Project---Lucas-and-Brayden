@@ -7,15 +7,15 @@
 // This is the Game Scene
 
 class GameScene extends Phaser.Scene {
-  // create an alien
-  createAlien () {
-    const alienXLocation = Math.floor(Math.random() * 1920) + 1 
-    let alienXVelocity = Math.floor(Math.random() *5) + 1
-    alienXVelocity *= Math.round(Math.random()) ? 1 : -1
-    const anAlien = this.physics.add.sprite(alienXLocation, -100, "alien")
-    anAlien.body.velocity.y = 200
-    anAlien.body.velocity.x = alienXVelocity
-    this.alienGroup.add(anAlien)
+  // create an asteroid
+  createAsteroid () {
+    const asteroidXLocation = Math.floor(Math.random() * 1920) + 1 
+    let asteroidXVelocity = Math.floor(Math.random() *5) + 1
+    asteroidXVelocity *= Math.round(Math.random()) ? 1 : -1
+    const anAsteroid = this.physics.add.sprite(asteroidXLocation, -100, "asteroid")
+    anAsteroid.body.velocity.y = 200
+    anAsteroid.body.velocity.x = asteroidXVelocity
+    this.asteroidGroup.add(anAsteroid)
   }
   
   constructor () {
@@ -51,32 +51,18 @@ class GameScene extends Phaser.Scene {
 
     this.scoreText = this.add.text(10, 10, "Score: " + this.score.toString(), this.scoreTextStyle)
 
-    this.ship = this.physics.add.sprite(1920 / 2, 1080 - 100, "ship")
-
-    // create a group for the missiles
-    this.missileGroup = this.physics.add.group()
-
-    // create a group for the aliens
-    this.alienGroup = this.add.group()
-    this.createAlien()
-
-    // Collisions between missiles and aliens
-    this.physics.add.collider(this.missileGroup, this.alienGroup, function (missileCollide, alienCollide) {
-      alienCollide.destroy()
-      missileCollide.destroy()
-      this.sound.play("explosion")
-      this.score = this.score + 1
-      this.scoreText.setText("Score: " + this.score.toString())
-      this.createAlien()
-      this.createAlien() 
-    }.bind(this))
-
-    // Collisions between ship and aliens
-    this.physics.add.collider(this.ship, this.alienGroup, function (shipCollide, alienCollide) {
+    this.millenniumFalcon = this.physics.add.sprite(1920 / 2, 1080 - 100, "millenniumFalcon")
+    
+    // create a group for the asteroids
+    this.asteroidGroup = this.add.group()
+    this.createAsteroid()
+    
+    // Collisions between millenniumFalcon and asteroids
+    this.physics.add.collider(this.millenniumFalcon, this.asteroidGroup, function (millenniumFalconCollide, asteroidCollide) {
       this.sound.play("bomb")
       this.physics.pause()
-      alienCollide.destroy()
-      shipCollide.destroy()
+     asteroidCollide.destroy()
+      millenniumFalconCollide.destroy()
       this.gameOverText = this.add.text(1920 / 2, 1080 / 2, "Game Over!\nClick to play again.", this.gameOverTextStyle).setOrigin(0.5)
       this.gameOverText.setInteractive({ useHandCursor: true })
       this.score = 0
@@ -92,56 +78,34 @@ class GameScene extends Phaser.Scene {
     const keyRightObj = this.input.keyboard.addKey("RIGHT")
     const keyUpObj = this.input.keyboard.addKey("UP")
     const keyDownObj = this.input.keyboard.addKey("DOWN")
-    const keySpaceObj = this.input.keyboard.addKey("SPACE")
-    
+  
     if (keyLeftObj.isDown === true) {
-      this.ship.x -= 15
-      if (this.ship.x <0){
-        this.ship.x = 0
+      this.millenniumFalcon.x -= 15
+      if (this.millenniumFalcon.x <0){
+        this.millenniumFalcon.x = 0
       }
     }
 
     if (keyRightObj.isDown === true) {
-      this.ship.x += 15
-      if (this.ship.x > 1920) {
-        this.ship.x = 1920 
+      this.millenniumFalcon.x += 15
+      if (this.millenniumFalcon.x > 1920) {
+        this.millenniumFalcon.x = 1920 
       }
     } 
     
     if (keyUpObj.isDown === true) {
-      this.ship.y -= 6
-      if (this.ship.y < 700) {
-        this.ship.y = 700
+      this.millenniumFalcon.y -= 6
+      if (this.millenniumFalcon.y < 700) {
+        this.millenniumFalcon.y = 700
       }
     }
 
     if (keyDownObj.isDown === true) {
-      this.ship.y += 6
-      if (this.ship.y > 1080) {
-        this.ship.y = 1080
+      this.millenniumFalcon.y += 6
+      if (this.millenniumFalcon.y > 1080) {
+        this.millenniumFalcon.y = 1080
       }
     }    
-    
-    if (keySpaceObj.isDown === true) {
-      if (this.fireMissile === false) {
-        // fire missile
-        this.fireMissile = true 
-        const aNewMissile = this.physics.add.sprite(this.ship.x, this.ship.y, "missile")
-        this.missileGroup.add(aNewMissile)
-        this.sound.play("laser")
-      }
-    }
-
-    if (keySpaceObj.isUp === true) {
-      this.fireMissile = false
-    }
-
-    this.missileGroup.children.each(function (item) {
-      item.y = item.y - 15
-      if (item.y < 0) {
-        item.destroy()
-      }
-    })
   }
 }
 
