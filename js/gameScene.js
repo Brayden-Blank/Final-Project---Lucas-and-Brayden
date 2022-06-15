@@ -43,6 +43,7 @@ class GameScene extends Phaser.Scene {
     this.load.image("asteroid", "assets/asteroid.png")
     //sound
     this.load.audio("backgroundMusic", "assets/backgroundMusic.mp3")
+    this.load.audio('shipExploding',  "assets/shipExploding.wav")
   }
 
   create (data) {
@@ -59,7 +60,7 @@ class GameScene extends Phaser.Scene {
     
     // Collisions between millenniumFalcon and asteroids
     this.physics.add.collider(this.millenniumFalcon, this.asteroidGroup, function (millenniumFalconCollide, asteroidCollide) {
-      this.sound.play("bomb")
+      this.sound.play("shipExploding")
       this.physics.pause()
      asteroidCollide.destroy()
       millenniumFalconCollide.destroy()
