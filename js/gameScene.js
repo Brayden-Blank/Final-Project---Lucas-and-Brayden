@@ -7,7 +7,7 @@
 
 class GameScene extends Phaser.Scene {
   // create an asteroid
-  createAsteroid () {
+  createAsteroid() {
     const asteroidXLocation = Math.floor(Math.random() * 1920) + 1
     let asteroidXVelocity = Math.floor(Math.random() * 5) + 1
     asteroidXVelocity *= Math.round(Math.random()) ? 1 : -1
@@ -54,7 +54,7 @@ class GameScene extends Phaser.Scene {
     this.load.image("asteroid", "assets/asteroid.png")
     //sound
     this.load.audio("backgroundMusic", "assets/backgroundMusic.mp3")
-    this.load.audio('shipExploding', "assets/shipExploding.wav")
+    this.load.audio("shipExploding", "assets/shipExploding.wav")
   }
 
   create(data) {
@@ -73,7 +73,7 @@ class GameScene extends Phaser.Scene {
       1080 - 100,
       "millenniumFalcon"
     )
-    
+
     // create a group for the asteroids
     this.asteroidGroup = this.add.group()
     this.createAsteroid()
@@ -83,21 +83,21 @@ class GameScene extends Phaser.Scene {
       this.millenniumFalcon,
       this.asteroidGroup,
       function (millenniumFalconCollide, asteroidCollide) {
-      this.sound.play("shipExploding")
-      this.physics.pause()
-      asteroidCollide.destroy()
-      millenniumFalconCollide.destroy()
-      this.gameOverText = this.add
-        .text(1920 / 2,
-              1080 / 2,
-              "Game Over!\nClick to play again.",
-              this.gameOverTextStyle
-             )
-        .setOrigin(0.5)
-      this.gameOverText.setInteractive({ useHandCursor: true })
-      this.score = 0
-      this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
-    }.bind(this)
+       this.sound.play("shipExploding")
+       this.physics.pause()
+       asteroidCollide.destroy()
+       millenniumFalconCollide.destroy()
+       this.gameOverText = this.add
+         .text(1920 / 2,
+               1080 / 2,
+               "Game Over!\nClick to play again.",
+               this.gameOverTextStyle
+              )
+         .setOrigin(0.5)
+       this.gameOverText.setInteractive({ useHandCursor: true })
+       this.score = 0
+       this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
+     }.bind(this)
     )
   }
 
