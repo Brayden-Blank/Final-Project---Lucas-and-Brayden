@@ -1,6 +1,6 @@
 /* global Phaser */
 
-// Created by: Lucas 7 Brayden
+// Created by: Lucas & Brayden
 // Created on: June 2022
 // This is the Han solo Asteroid game configuration file
 
