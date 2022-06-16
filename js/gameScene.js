@@ -10,7 +10,7 @@
  */
 class GameScene extends Phaser.Scene {
   // create an asteroid
-  /* 
+  /*
    * Creating enemies
    */
   createAsteroid() {
