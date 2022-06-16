@@ -5,8 +5,14 @@
 // Created on: April-May 2022
 // This is the Game Scene
 
+/* 
+ * gameScene.js
+ */
 class GameScene extends Phaser.Scene {
   // create an asteroid
+  /* 
+   * Creating enemies
+   */
   createAsteroid() {
     const asteroidXLocation = Math.floor(Math.random() * 1920) + 1
     let asteroidXVelocity = Math.floor(Math.random() * 5) + 1
@@ -21,6 +27,9 @@ class GameScene extends Phaser.Scene {
     this.asteroidGroup.add(anAsteroid)
   }
 
+  /* 
+   * constructor
+   */
   constructor() {
     super({ key: "gameScene" })
 
@@ -41,10 +50,16 @@ class GameScene extends Phaser.Scene {
     }
   }
 
+  /*
+   * background
+   */
   init(data) {
     this.cameras.main.setBackgroundColor("#ffffff")
   }
 
+  /*
+   * images
+   */
   preload() {
     console.log("Game Scene")
 
@@ -57,6 +72,9 @@ class GameScene extends Phaser.Scene {
     this.load.audio("shipExploding", "assets/shipExploding.wav")
   }
 
+  /*
+   * sprites
+   */
   create(data) {
     this.background = this.add.image(0, 0, "deathStarBackground").setScale(2.0)
     this.background.setOrigin(0, 0)
@@ -102,6 +120,9 @@ class GameScene extends Phaser.Scene {
     )
   }
 
+  /* 
+   * Controls
+   */
   update(time, delta) {
     // called 60 times a second, hopefully!
 
