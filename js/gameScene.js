@@ -88,11 +88,12 @@ class GameScene extends Phaser.Scene {
         asteroidCollide.destroy()
         millenniumFalconCollide.destroy()
         this.gameOverText = this.add
-          .text(1920 / 2,
-               1080 / 2,
-               "Game Over!\nClick to play again.",
-               this.gameOverTextStyle
-              )
+          .text(
+            1920 / 2,
+            1080 / 2,
+            "Game Over!\nClick to play again.",
+            this.gameOverTextStyle
+         )
           .setOrigin(0.5)
         this.gameOverText.setInteractive({ useHandCursor: true })
         this.score = 0
