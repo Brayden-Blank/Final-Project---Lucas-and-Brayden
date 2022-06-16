@@ -83,21 +83,21 @@ class GameScene extends Phaser.Scene {
       this.millenniumFalcon,
       this.asteroidGroup,
       function (millenniumFalconCollide, asteroidCollide) {
-       this.sound.play("shipExploding")
-       this.physics.pause()
-       asteroidCollide.destroy()
-       millenniumFalconCollide.destroy()
-       this.gameOverText = this.add
-         .text(1920 / 2,
+        this.sound.play("shipExploding")
+        this.physics.pause()
+        asteroidCollide.destroy()
+        millenniumFalconCollide.destroy()
+        this.gameOverText = this.add
+          .text(1920 / 2,
                1080 / 2,
                "Game Over!\nClick to play again.",
                this.gameOverTextStyle
               )
-         .setOrigin(0.5)
-       this.gameOverText.setInteractive({ useHandCursor: true })
-       this.score = 0
-       this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
-     }.bind(this)
+          .setOrigin(0.5)
+        this.gameOverText.setInteractive({ useHandCursor: true })
+        this.score = 0
+        this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
+      }.bind(this)
     )
   }
 
