@@ -5,7 +5,7 @@
 // Created on: April-May 2022
 // This is the Game Scene
 
-/* 
+/*
  * gameScene.js
  */
 class GameScene extends Phaser.Scene {
@@ -27,7 +27,7 @@ class GameScene extends Phaser.Scene {
     this.asteroidGroup.add(anAsteroid)
   }
 
-  /* 
+  /*
    * constructor
    */
   constructor() {
@@ -120,7 +120,7 @@ class GameScene extends Phaser.Scene {
     )
   }
 
-  /* 
+  /*
    * Controls
    */
   update(time, delta) {
