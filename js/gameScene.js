@@ -35,7 +35,6 @@ class GameScene extends Phaser.Scene {
 
     this.background = null
     this.ship = null
-    this.fireMissile = false
     this.score = 0
     this.scoreText = null
     this.scoreTextStyle = {
@@ -64,12 +63,12 @@ class GameScene extends Phaser.Scene {
     console.log("Game Scene")
 
     // images
-    this.load.image("deathStarBackground", "assets/deathStarBackground.png")
-    this.load.image("millenniumFalcon", "assets/millenniumFalcon.png")
-    this.load.image("asteroid", "assets/asteroid.png")
+    this.load.image("deathStarBackground", "./assets/deathStarBackground.png")
+    this.load.image("millenniumFalcon", "./assets/millenniumFalcon.png")
+    this.load.image("asteroid", "./assets/asteroid.png")
     //sound
-    this.load.audio("backgroundMusic", "assets/backgroundMusic.mp3")
-    this.load.audio("shipExploding", "assets/shipExploding.wav")
+    this.load.audio("backgroundMusic", "./assets/backgroundMusic.mp3")
+    this.load.audio("shipExploding", "./assets/shipExploding.wav")
   }
 
   /**
@@ -126,10 +125,10 @@ class GameScene extends Phaser.Scene {
   update(time, delta) {
     // called 60 times a second, hopefully!
 
-    const keyLeftObj = this.input.keyboard.addKey("LEFT")
-    const keyRightObj = this.input.keyboard.addKey("RIGHT")
-    const keyUpObj = this.input.keyboard.addKey("UP")
-    const keyDownObj = this.input.keyboard.addKey("DOWN")
+    const keyLeftObj = this.input.keyboard.addKey("A")
+    const keyRightObj = this.input.keyboard.addKey("D")
+    const keyUpObj = this.input.keyboard.addKey("W")
+    const keyDownObj = this.input.keyboard.addKey("S")
 
     if (keyLeftObj.isDown === true) {
       this.millenniumFalcon.x -= 15
