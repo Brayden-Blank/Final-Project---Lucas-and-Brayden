@@ -68,7 +68,6 @@ class GameScene extends Phaser.Scene {
     this.load.image("asteroid", "./assets/asteroid.png")
     //sound
     this.load.audio("backgroundMusic", "./assets/backgroundMusic.mp3")
-    this.load.audio("shipExploding", "./assets/shipExploding.wav")
   }
 
   /**
@@ -100,7 +99,6 @@ class GameScene extends Phaser.Scene {
       this.millenniumFalcon,
       this.asteroidGroup,
       function (millenniumFalconCollide, asteroidCollide) {
-        this.sound.play("shipExploding")
         this.physics.pause()
         asteroidCollide.destroy()
         millenniumFalconCollide.destroy()
@@ -115,10 +113,17 @@ class GameScene extends Phaser.Scene {
         this.gameOverText.setInteractive({ useHandCursor: true })
         this.score = 0
         this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
+        this.backgroundMusic.stop()
       }.bind(this)
     )
+    //background backgroundMusic
+    this.backgroundMusic = this.sound.add("backgroundMusic", {
+      volume: 1,
+      loop: true,
+    })
+    this.backgroundMusic.play() 
   }
-
+  
   /**
    * Controls
    */
@@ -146,8 +151,8 @@ class GameScene extends Phaser.Scene {
 
     if (keyUpObj.isDown === true) {
       this.millenniumFalcon.y -= 6
-      if (this.millenniumFalcon.y < 700) {
-        this.millenniumFalcon.y = 700
+      if (this.millenniumFalcon.y < 100) {
+        this.millenniumFalcon.y = 100
       }
     }
 
