@@ -121,9 +121,9 @@ class GameScene extends Phaser.Scene {
       volume: 1,
       loop: true,
     })
-    this.backgroundMusic.play() 
+    this.backgroundMusic.play()
   }
-  
+
   /**
    * Controls
    */

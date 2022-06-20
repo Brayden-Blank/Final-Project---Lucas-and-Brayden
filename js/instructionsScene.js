@@ -36,7 +36,10 @@ class InstructionsScene extends Phaser.Scene {
    */
   preload() {
     console.log("Instructions Scene")
-    this.load.image("instructionsSceneBackground", "assets/instructionsScene.png")
+    this.load.image(
+      "instructionsSceneBackground",
+      "assets/instructionsScene.png"
+    )
     this.load.image("startButton", "assets/start.png")
   }
 
