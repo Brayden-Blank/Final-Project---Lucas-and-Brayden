@@ -66,6 +66,7 @@ class GameScene extends Phaser.Scene {
     this.load.image("deathStarBackground", "./assets/deathStarBackground.png")
     this.load.image("millenniumFalcon", "./assets/millenniumFalcon.png")
     this.load.image("asteroid", "./assets/asteroid.png")
+    this.load.image("invisibleWall", "./assets/invisibleWall.png")
     //sound
     this.load.audio("backgroundMusic", "./assets/backgroundMusic.mp3")
   }
@@ -90,8 +91,18 @@ class GameScene extends Phaser.Scene {
       "millenniumFalcon"
     )
 
+    this.invisibleWall = this.physics.add
+      .sprite(1920 / 2, 1080 / 2, "invisibleWall")
+      .setImmovable()
+    this.secondInvisibleWall = this.physics.add
+      .sprite(1920 / 2 + 504, 1080 / 2, "invisibleWall")
+      .setImmovable()
+
     // create a group for the asteroids
     this.asteroidGroup = this.add.group()
+    this.createAsteroid()
+    this.createAsteroid()
+    this.createAsteroid()
     this.createAsteroid()
 
     // Collisions between millenniumFalcon and asteroids
@@ -150,18 +161,25 @@ class GameScene extends Phaser.Scene {
     }
 
     if (keyUpObj.isDown === true) {
-      this.millenniumFalcon.y -= 6
+      this.millenniumFalcon.y -= 13
       if (this.millenniumFalcon.y < 100) {
         this.millenniumFalcon.y = 100
       }
     }
 
     if (keyDownObj.isDown === true) {
-      this.millenniumFalcon.y += 6
+      this.millenniumFalcon.y += 13
       if (this.millenniumFalcon.y > 1080) {
         this.millenniumFalcon.y = 1080
       }
     }
+
+    this.asteroidGroup.children.each(function (item) {
+      if (item.y > 1080) {
+        item.x = Math.floor(Math.random() * 1920) + 1
+        item.y = -100
+      }
+    })
   }
 }
 
