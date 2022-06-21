@@ -9,14 +9,14 @@
 /**
  * This class is the Menu Scene
  */
-class MenuScene extends Phaser.Scene {
+class InstructionsScene extends Phaser.Scene {
   /**
    * This method is the construtor
    */
   constructor() {
-    super({ key: "menuScene" })
+    super({ key: "instructionsScene" })
 
-    this.menuSceneBackgroundImage = null
+    this.instructionsSceneBackgroundImage = null
     this.startButton = null
   }
 
@@ -35,8 +35,11 @@ class MenuScene extends Phaser.Scene {
    * Use it to load assets.
    */
   preload() {
-    console.log("Menu Scene")
-    this.load.image("menuSceneBackground", "assets/menuScene.png")
+    console.log("Instructions Scene")
+    this.load.image(
+      "instructionsSceneBackground",
+      "assets/instructionsScene.png"
+    )
     this.load.image("startButton", "assets/start.png")
   }
 
@@ -47,8 +50,8 @@ class MenuScene extends Phaser.Scene {
    */
   create(data) {
     this.menuSceneBackgroundImage = this.add
-      .sprite(0, 0, "menuSceneBackground")
-      .setScale(2)
+      .sprite(0, 0, "instructionsSceneBackground")
+      .setScale(1.2)
     this.menuSceneBackgroundImage.x = 1920 / 2
     this.menuSceneBackgroundImage.y = 1080 / 2
 
@@ -73,8 +76,8 @@ class MenuScene extends Phaser.Scene {
    * Load into the game!
    */
   clickButton() {
-    this.scene.start("instructionsScene")
+    this.scene.start("gameScene")
   }
 }
 
-export default MenuScene
+export default InstructionsScene
