@@ -66,7 +66,6 @@ class GameScene extends Phaser.Scene {
     this.load.image("deathStarBackground", "./assets/deathStarBackground.png")
     this.load.image("millenniumFalcon", "./assets/millenniumFalcon.png")
     this.load.image("asteroid", "./assets/asteroid.png")
-    this.load.image("invisibleWall", "./assets/invisibleWall.png")
     //sound
     this.load.audio("backgroundMusic", "./assets/backgroundMusic.mp3")
   }
@@ -90,13 +89,6 @@ class GameScene extends Phaser.Scene {
       1080 - 100,
       "millenniumFalcon"
     )
-
-    this.invisibleWall = this.physics.add
-      .sprite(1920 / 2, 1080 / 2, "invisibleWall")
-      .setImmovable()
-    this.secondInvisibleWall = this.physics.add
-      .sprite(1920 / 2 + 504, 1080 / 2, "invisibleWall")
-      .setImmovable()
 
     // create a group for the asteroids
     this.asteroidGroup = this.add.group()
@@ -124,6 +116,8 @@ class GameScene extends Phaser.Scene {
         this.gameOverText.setInteractive({ useHandCursor: true })
         this.score = 0
         this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
+        this.score = 0
+        this.time
         this.backgroundMusic.stop()
       }.bind(this)
     )
@@ -139,6 +133,7 @@ class GameScene extends Phaser.Scene {
    * Controls
    */
   update(time, delta) {
+    this.timer += delta
     // called 60 times a second, hopefully!
 
     const keyLeftObj = this.input.keyboard.addKey("A")
@@ -180,6 +175,13 @@ class GameScene extends Phaser.Scene {
         item.y = -100
       }
     })
+
+    // https://gamedev.stackexchange.com/questions/182242/phaser-3-how-to-trigger-an-event-every-1-second
+    while (time > 1000) {
+      this.score = this.score + 1
+      this.time = this.time - 1000
+      this.scoreText.setText("Score: " + this.score.toString())
+    }
   }
 }
 
