@@ -176,6 +176,7 @@ class GameScene extends Phaser.Scene {
       }
     }) 
 
+    // https://gamedev.stackexchange.com/questions/182242/phaser-3-how-to-trigger-an-event-every-1-second
     while (time > 1000) {
       this.score = this.score + 1
       this.time = this.time - 1000
