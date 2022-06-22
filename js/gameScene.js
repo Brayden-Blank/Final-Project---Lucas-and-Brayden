@@ -35,7 +35,7 @@ class GameScene extends Phaser.Scene {
 
     this.background = null
     this.ship = null
-    this.score = 0 
+    this.score = 0
     this.scoreText = null
     this.scoreTextStyle = {
       font: "65px Arial",
@@ -174,7 +174,7 @@ class GameScene extends Phaser.Scene {
         item.x = Math.floor(Math.random() * 1920) + 1
         item.y = -100
       }
-    }) 
+    })
 
     // https://gamedev.stackexchange.com/questions/182242/phaser-3-how-to-trigger-an-event-every-1-second
     while (time > 1000) {
