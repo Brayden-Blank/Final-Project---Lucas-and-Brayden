@@ -36,6 +36,8 @@ class GameScene extends Phaser.Scene {
     this.background = null
     this.ship = null
     this.score = 0
+    this.timer = 0
+    this.timerTwo = 0
     this.scoreText = null
     this.scoreTextStyle = {
       font: "65px Arial",
@@ -94,8 +96,6 @@ class GameScene extends Phaser.Scene {
     this.asteroidGroup = this.add.group()
     this.createAsteroid()
     this.createAsteroid()
-    this.createAsteroid()
-    this.createAsteroid()
 
     // Collisions between millenniumFalcon and asteroids
     this.physics.add.collider(
@@ -115,10 +115,9 @@ class GameScene extends Phaser.Scene {
           .setOrigin(0.5)
         this.gameOverText.setInteractive({ useHandCursor: true })
         this.score = 0
+        this.timer = this.timer.reset
+        this.timerTwo = this.timerTwo.reset
         this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
-        this.score = 0
-        this.time
-        this.backgroundMusic.stop()
       }.bind(this)
     )
     //background backgroundMusic
@@ -134,6 +133,7 @@ class GameScene extends Phaser.Scene {
    */
   update(time, delta) {
     this.timer += delta
+    this.timerTwo += delta
     // called 60 times a second, hopefully!
 
     const keyLeftObj = this.input.keyboard.addKey("A")
@@ -177,10 +177,15 @@ class GameScene extends Phaser.Scene {
     })
 
     // https://gamedev.stackexchange.com/questions/182242/phaser-3-how-to-trigger-an-event-every-1-second
-    while (time > 1000) {
-      this.score = this.score + 1
-      this.time = this.time - 1000
+    while (this.timer > 1000) {
+      this.score = this.score += 1
+      this.timer = this.timer -= 1000
       this.scoreText.setText("Score: " + this.score.toString())
+    }
+    while (this.timerTwo > 7500) {
+      this.createAsteroid()
+      this.createAsteroid()
+      this.timerTwo = this.timerTwo -= 7500
     }
   }
 }
