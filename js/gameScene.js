@@ -74,7 +74,6 @@ class GameScene extends Phaser.Scene {
     this.load.audio("backgroundMusic", "./assets/backgroundMusic.mp3")
     this.load.audio("shipExploding", "./assets/shipExploding.mp3")
     this.load.audio("hanSoloQuote", "./assets/hanSoloQuote.mp3")
-    
   }
 
   /**
@@ -201,7 +200,7 @@ class GameScene extends Phaser.Scene {
 
     if (this.timerTwo > 7500) {
       this.timerTwo = this.timerTwo -= 6500
-      if (this.timeTwoActive = true) {
+      if ((this.timeTwoActive = true)) {
         this.createAsteroid()
         this.createAsteroid()
       }
