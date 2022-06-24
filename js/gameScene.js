@@ -37,6 +37,8 @@ class GameScene extends Phaser.Scene {
     this.ship = null
     this.score = 0
     this.timer = 0
+    this.timeActive = true
+    this.timeTwoActive = true
     this.timerTwo = 0
     this.scoreText = null
     this.scoreTextStyle = {
@@ -70,6 +72,8 @@ class GameScene extends Phaser.Scene {
     this.load.image("asteroid", "./assets/asteroid.png")
     //sound
     this.load.audio("backgroundMusic", "./assets/backgroundMusic.mp3")
+    this.load.audio("shipExploding", "./assets/shipExploding.mp3")
+    this.load.audio("hanSoloQuote", "./assets/hanSoloQuote.mp3")
   }
 
   /**
@@ -115,9 +119,17 @@ class GameScene extends Phaser.Scene {
           .setOrigin(0.5)
         this.gameOverText.setInteractive({ useHandCursor: true })
         this.score = 0
-        this.timer = this.timer.reset
-        this.timerTwo = this.timerTwo.reset
-        this.gameOverText.on("pointerdown", () => this.scene.start("gameScene"))
+        this.timeActive = false
+        this.timeTwoActive = false
+        this.sound.play("shipExploding")
+        this.backgroundMusic.stop()
+        this.sound.play("hanSoloQuote")
+        console.log("Turn off counter")
+        this.gameOverText.on("pointerdown", () => {
+          this.scene.start("gameScene")
+          this.timeActive = true
+          this.timeTwoActive = true
+        })
       }.bind(this)
     )
     //background backgroundMusic
@@ -177,15 +189,21 @@ class GameScene extends Phaser.Scene {
     })
 
     // https://gamedev.stackexchange.com/questions/182242/phaser-3-how-to-trigger-an-event-every-1-second
-    while (this.timer > 1000) {
-      this.score = this.score += 1
+    //console.log(this.timer)
+    if (this.timer > 1000) {
       this.timer = this.timer -= 1000
-      this.scoreText.setText("Score: " + this.score.toString())
+      if (this.timeActive == true) {
+        this.score = this.score += 1
+        this.scoreText.setText("Score: " + this.score.toString())
+      }
     }
-    while (this.timerTwo > 7500) {
-      this.createAsteroid()
-      this.createAsteroid()
-      this.timerTwo = this.timerTwo -= 7500
+
+    if (this.timerTwo > 7500) {
+      this.timerTwo = this.timerTwo -= 6500
+      if ((this.timeTwoActive = true)) {
+        this.createAsteroid()
+        this.createAsteroid()
+      }
     }
   }
 }
